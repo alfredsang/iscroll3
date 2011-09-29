@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>
+		杂志阅读-开发框架
+	</title>
+	<script type="text/javascript" src="iscroll3.js"></script>
+	<script type="text/javascript" src="lib/jquery-1.6.4.min.js"></script>
+	<!-- current page config -->
+	<link rel="stylesheet" href="lib/ASMag.css" type="text/css" />
+	<script type="text/javascript" src="lib/ASMag.js"></script>
+	
+	<script>
+	var ASPage = {
+		
+		cover3:{
+			bg:'demo/images/mymag/bg_blue.jpg', 
+			pageNum:1
+		},
+		bbb:{
+			bg:'demo/images/mymag/c2.jpg', 
+			pageNum:2
+		}
+	}
+	
+	ASPage.cover3.lifeCycle={
+		init:function(){
+			// ATMag.log('init');
+		},
+		fliped:function(myscroller){
+			ASMag.log('fliped+'+myscroller.currentXPage);
+		},
+		moving:function(myscroller){
+			ASMag.log('moving+'+myscroller.x);
+		}
+	}
+	
+	ASPage.bbb.lifeCycle={ 
+		init:function(){
+			// ATMag.log('init');
+		},
+		fliped:function(myscroller){
+			ASMag.log('fliped+'+myscroller.currentXPage);
+		} 
+	}
+	</script>
+<body>
+	<div id="wrapper">
+		<div id="scroller">
+			<ul id="thelist">
+		 
+			</ul>
+		</div>
+	</div>
+	<div id="nav">
+		<div id="prev">&larr; 书架</div>
+		<ul id="indicator">
+			<li class="active">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li> 
+			<li>7</li> 
+			<li>8</li> 
+		</ul>
+		<div id="next" >目录 &rarr;</div>
+	</div>
+</body>
+</html>

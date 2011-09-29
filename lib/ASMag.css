@@ -1,0 +1,172 @@
+body,ul,li {
+	padding:0px;
+	margin:0;
+}
+
+body {
+	font-size:12px;
+	-webkit-user-select:none;
+    -webkit-text-size-adjust:none;
+	font-family:helvetica;
+	background:#000;
+	height:420px;
+}
+
+#wrapper {
+	width:320px;
+	height:389px;
+
+	float:left;
+	position:relative;	/* On older OS versions "position" and "z-index" must be defined, */
+	z-index:1;			/* it seems that recent webkit is less picky and works anyway. */
+	overflow:hidden;
+
+	background:#aaa;
+/*	-webkit-border-radius:1px;
+	-moz-border-radius:1px;
+	-o-border-radius:1px;
+	border-radius:1px;*/
+	background:#e3e3e3; 
+}
+
+#scroller {
+	width:2560px;
+	height:100%;
+	float:left;
+	padding:0;
+}
+
+#scroller ul {
+	list-style:none;
+	display:block;
+	float:left;
+	width:100%;
+	height:100%;
+	padding:0;
+	margin:0;
+	text-align:left;
+}
+
+#scroller li {
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-o-box-sizing:border-box;
+	box-sizing:border-box;
+	display:block; float:left;
+/*	text-align:center;
+	font-family:georgia;
+	font-size:18px;
+	line-height:140%;*/
+	width:320px;
+	height:389px;
+}
+
+#nav {
+	width:320px;
+	float:left;
+	z-index:9999;
+	background:black;
+/*	margin-top:-50px;*/
+}
+
+#prev, #next {
+	float:left;
+	font-weight:bold;
+	font-size:14px;
+	padding:5px 0;
+	width:80px;
+	color:white;
+}
+
+a:link {color: #FF0000}     /* 未访问的链接 */
+a:visited {color: #00FF00}  /* 已访问的链接 */
+a:hover {color: #FF00FF}    /* 当有鼠标悬停在链接上 */
+a:active {color: #0000FF}   /* 被选择的链接 */
+
+
+#next {
+	float:right;
+	text-align:right;
+}
+
+#indicator, #indicator > li {
+	display:block; float:left;
+	list-style:none;
+	padding:0; margin:0;
+}
+
+#indicator {
+	width:110px;
+	padding:12px 0 0 30px;
+}
+
+#indicator > li {
+	text-indent:-9999em;
+	width:8px; height:8px;
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+	-o-border-radius:4px;
+	border-radius:4px;
+	background:#ddd;
+	overflow:hidden;
+	margin-right:4px;
+}
+
+#indicator > li.active {
+	background:green;
+}
+
+#indicator > li:last-child {
+	margin:0;
+}
+  
+/*ok*/
+li #cover1{
+	margin: 0; padding: 0; background: transparent url(../demo/images/mymag/cover/cover1.jpg) top left no-repeat;
+	background-position:center; background-size:320px 389px ;height: 389px; width: 320px;  
+}
+/*todo*/
+li #cover2{
+	margin: 0; padding: 0; background: transparent url(../demo/images/mymag/cover/cover2.jpg) top left no-repeat;
+	background-position:center; background-size:320px 389px ;height: 389px; width: 320px;  
+}
+
+/*todo*/
+li #cover3{
+	margin: 0; padding: 0; background: transparent url(../demo/images/mymag/cover/cover3.jpg) top left no-repeat;
+	background-position:center; background-size:320px 389px ;height: 389px; width: 320px;  
+}
+
+
+li #mulu1{
+	margin: 0; padding: 0; background: transparent url(../demo/images/mymag/mulu/mulu1.png) top left no-repeat;
+	background-position:center; background-size:320px 389px ;height: 389px; width: 320px;  
+}
+
+li #c3{
+margin: 0; padding: 0; background: transparent url(../demo/images/mymag/008.jpg) top left no-repeat;
+background-position:center; background-size:320px 389px ;height: 389px; width: 320px;  
+}
+
+
+li #end{
+	margin: 0; padding: 0; background: transparent url(../demo/images/mymag/end.jpg) top left no-repeat;
+	background-position:center; background-size:320px 389px ;height: 389px; width: 320px;  
+}
+
+
+li #end2{
+	margin: 0; padding: 0; background: transparent url(../demo/images/mymag/end2.png) top left no-repeat;
+	background-position:center; background-size:320px 389px ;height: 389px; width: 320px;  
+}
+
+li #c1{
+margin: 0; padding: 0; background: transparent url(../demo/images/mymag/tupianzoom.png) top left no-repeat;
+background-position:center; background-size:320px 389px ;height: 389px; width: 320px;  
+ 
+}
+li #c2{
+	margin: 0; padding: 0; background: transparent url(../demo/images/mymag/s2.png) top left no-repeat;
+	background-position:center; background-size:320px 389px ;height: 389px; width: 320px;  
+}
+

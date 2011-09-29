@@ -1,0 +1,168 @@
+
+
+2011－09－22 16：09
+修改修改currentXPage取值方式，使之更为通用
+	currentXPage=Math.abs(Math.floor(that.x/that.wrapper.offsetWidth))+1;
+
+把onScrollPageFliped改成onScrollXPageFliped便于以后扩展
+
+that.wrapper.offsetWidth是一个非常有用的scroller宽度。
+
+
+
+未改动之前的iScroll3使用方式：
+     var myScroll = new iScroll3('scroller', {          snap: true,
+          momentum: false,
+          hScrollbar: false,
+          onScrollEnd: function () {
+             
+          }
+
+      });
+
+
+从上面代码可以看出，iScroll3的原型里只有一个回调方法onScrollEnd，这个函数只要是页内任何touch move事件都会触发，这就导致很多很多需要翻页时处理的事，在onScrollEnd发生，而且是多次，资源消耗非常严重。
+对于杂志阅读，很多是翻页才加动画效果或页面效果的，而在页内不需要任何事件。
+所以性能优化：减少onScrollEnd（）中使用任何代码
+
+
+
+ *  增加1个配置项
+ *     1）     isFullScreen:true,
+
+当iScroll3嵌套的时候，只要最外层的iScroll3的 isFullScreen即可，内部均为false.所以默认值为true.
+
+下面是测试代码：
+     var myScroll = new iScroll3('scroller', {
+          snap: true,
+          momentum: false,
+          hScrollbar: false,
+          onScrollEnd: function () {
+
+          },
+
+          onScrollXPageFliped:function () {
+
+               //翻页时设置不许全屏
+              this.options.isFullScreen=false;
+               alert('onScrollXPageFliped'+this.currentXPage); 
+
+          }
+
+      });
+
+
+
+
+
+    var myScroll = new iScroll3('scroller', {
+          snap: true,
+          momentum: false,
+          hScrollbar: false,
+          isFullScreen: false,
+          onScrollEnd: function () {
+          },
+
+          onScrollXPageFliped:function () {
+               alert('onScrollXPageFliped'+this.currentXPage);              
+          }
+
+      });
+
+
+
+
+
+
+
+ *  增加一个回调函数
+ *     1）     onScrollXPageFliped:function(){},//翻页事件处理回调函数
+
+ 测试代码同上
+
+
+
+
+
+ *  增加2个全局变量
+ *     1）     currentXPage:1,
+ *     2）     _isPageFliped:false,//私有
+
+全局变量使用方法：
+    var myScroll = new iScroll3('scroller', {
+          snap: true,
+          momentum: false,
+          hScrollbar: false,
+          isFullScreen: false,
+          onScrollEnd: function () {
+          },
+
+          onScrollXPageFliped:function () {
+               //在回调方法内部，使用this对象获得全局变量
+               alert('onScrollXPageFliped'+this.currentXPage);
+               _onScrollXPageFlipedCallback();//翻页后－回调函数
+          }
+      });
+
+
+     //在回调方法外部，使用myScroll对象获得全局变量
+     function _onScrollXPageFlipedCallback(){
+          alert('onScrollXPageFliped'+myScroll.currentXPage);
+     }
+
+
+源码中currentXPage取决于that.wrapper.offsetWidth
+代码如下：
+that.currentXPage=Math.abs(Math.floor(that.x/that.wrapper.offsetWidth))+1;
+ 
+
+
+
+
+
+
+－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+
+
+
+说明iScroll4和3的区别之一
+
+
+
+
+iscroll4里，是wrapper的第一个子节点。这点在使用用法上很明显
+	that.wrapper = typeof el == 'object' ? el : doc.getElementById(el);
+    that.scroller = that.wrapper.children[0];
+
+iScroll3里，是父节点
+	that.element = typeof el == 'object' ? el : document.getElementById(el);
+	that.wrapper = that.element.parentNode;
+
+
+html代码如下:
+<div id="wrapper">
+     <div id="scroller">
+     </div>
+</div>
+
+
+
+
+var myScroll_inner_fullscreen = new iScroll3('scroller', {     desktopCompatibility:false,
+     onScrollEnd: function () {
+          window.scrollTo(0, 1);
+     }
+});
+
+
+var myScroll_inner_fullscreen = new iScroll4('wapper', {
+     desktopCompatibility:false,
+     onScrollEnd: function () {
+          window.scrollTo(0, 1);
+     }
+});
+
+
+
+
+
